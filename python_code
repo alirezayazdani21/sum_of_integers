@@ -1,0 +1,16 @@
+import numpy as np
+import pandas as pd
+
+#Choose N to test for sum of two squares
+N=3653
+sqrt_N = int(np.sqrt(N))
+#print(sqrt_N)
+test_df = pd.DataFrame()
+for n in range(1,sqrt_N+1):
+    loop_df = pd.DataFrame({'n':n,'n_sq':n**2,
+                            'N minus n_sq':N-n**2,
+                            'sqrt(N minus n_sq)':np.sqrt(N-n**2),
+                           'integer':float.is_integer(np.sqrt(N-n**2))},index=[0])
+    test_df = pd.concat([test_df,loop_df])
+test_df.index=range(1,sqrt_N+1)
+test_df[test_df['integer']==True]
